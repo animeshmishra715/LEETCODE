@@ -1,32 +1,26 @@
 class Solution {
     public int mostFrequentEven(int[] nums) {
-        int a = 0;
-        int b = 0;
-        int c = -1;
-        int d = Integer.MAX_VALUE;
-        for (int i = 0; i < nums.length; i++) {
-            int count = 0;
-            for (int j = 0; j < nums.length; j++) {
-                if (nums[i] == nums[j]) {
-                    count++;
-                }
-            }
-            b = count;
-            if (nums[i] % 2 == 0) {
-                d = Math.min(d, nums[i]);
-
-                if (b > a || (b == a && nums[i] < c)) {
-                    a = b;
-                    c = nums[i];
-                }
-            }
+        int []hash=new int[100000+1];
+        for(int i=0;i<nums.length;i++){
+            hash[nums[i]]+=1;
         }
-        if (c == -1 && d < Integer.MAX_VALUE) {
-            return d;
+        int d=Integer.MAX_VALUE;
+        int c=Integer.MIN_VALUE;
+        for(int i=0;i<hash.length;i++){
+            if(i%2==0){
+            c=Math.max(c,hash[i]);
+            }
+            
         }
-
-        if (nums.length == 1 && nums[0] % 2 == 0)
-            return nums[0];
-        return c;
+        if(c==0) return -1;
+        for(int i=0;i<hash.length;i++){
+            if(i%2==0){
+            if(hash[i]==c){
+                d=Math.min(d,i);
+            }
+            }
+            
+        }
+        return d;
     }
 }
