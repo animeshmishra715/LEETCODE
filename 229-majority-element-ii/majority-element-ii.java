@@ -11,7 +11,7 @@ class Solution {
             if(entry.getValue()>(nums.length)/3){
                 ans.add(entry.getKey());
             }
-            System.out.println(entry.getKey() + " -> " + entry.getValue());
+           
         }
         return ans;
     }
